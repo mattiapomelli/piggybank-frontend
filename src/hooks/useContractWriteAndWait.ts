@@ -1,0 +1,123 @@
+import {
+  Contract,
+  ContractInterface,
+  ContractTransaction,
+  providers,
+} from 'ethers'
+import {
+  useContractWrite,
+  usePrepareContractWrite,
+  useWaitForTransaction,
+} from 'wagmi'
+
+import MyTokenAbi from '@abis/contracts/MyToken.json'
+import PiggyBankAbi from '@abis/contracts/PiggyBank.json'
+import { MyToken, PiggyBank } from '@abis/types'
+import { PIGGY_BANK_ADDRESS, TOKEN_ADDRESS } from '@constants/addresses'
+import { CHAIN } from '@constants/chains'
+
+type Status = 'error' | 'success' | 'idle' | 'loading'
+
+// TODO: add 'waitingConfirmation' status?
+const getStatus = (writeStatus: Status, confirmationStatus: Status): Status => {
+  if (writeStatus === 'idle') {
+    return 'idle'
+  }
+
+  if (writeStatus === 'loading' || confirmationStatus === 'loading') {
+    return 'loading'
+  }
+
+  if (writeStatus === 'error' || confirmationStatus === 'error') {
+    return 'error'
+  }
+
+  if (writeStatus === 'success' && confirmationStatus === 'success') {
+    return 'success'
+  }
+
+  return 'idle'
+}
+
+type ContractFunctions<T extends Contract> = T['functions']
+
+type ContractWriteFunctions<T extends Contract> = {
+  [K in keyof ContractFunctions<T>]: ReturnType<
+    ContractFunctions<T>[K]
+  > extends Promise<ContractTransaction>
+    ? K
+    : never
+}[keyof ContractFunctions<T>]
+
+interface BaseUseContractWriteArgs<T extends Contract> {
+  functionName: ContractWriteFunctions<T>
+  onSuccess?: (data: providers.TransactionReceipt) => void
+  args?: any | any[]
+}
+
+interface UseContractWriteArgs<T extends Contract>
+  extends BaseUseContractWriteArgs<T> {
+  addressOrName: string
+  contractInterface: ContractInterface
+}
+
+const useContractWriteAndWait = <T extends Contract>({
+  functionName,
+  onSuccess,
+  ...args
+}: UseContractWriteArgs<T>) => {
+  const { config } = usePrepareContractWrite({
+    ...args,
+    functionName: functionName as string,
+  })
+
+  const {
+    write,
+    writeAsync,
+    status: writeStatus,
+    error: writeError,
+    data: writeData,
+    isLoading: isLoadingWrite,
+  } = useContractWrite(config)
+
+  const {
+    data,
+    status: confirmationStatus,
+    error: confirmationError,
+    isLoading: isLoadingConfirmation,
+  } = useWaitForTransaction({
+    hash: writeData?.hash,
+    onSuccess,
+  })
+
+  return {
+    write,
+    writeAsync,
+    data,
+    error: writeError || confirmationError,
+    status: getStatus(writeStatus, confirmationStatus),
+    isLoading: isLoadingWrite || isLoadingConfirmation,
+  }
+}
+
+export default useContractWriteAndWait
+
+export const usePiggyBankContractWrite = (
+  args: BaseUseContractWriteArgs<PiggyBank>,
+) => {
+  return useContractWriteAndWait({
+    addressOrName: PIGGY_BANK_ADDRESS[CHAIN.id],
+    contractInterface: PiggyBankAbi.abi,
+    ...args,
+  })
+}
+
+export const useTokenContractWrite = (
+  args: BaseUseContractWriteArgs<MyToken>, // TODO: replace with ERC20 for production
+) => {
+  return useContractWriteAndWait({
+    addressOrName: TOKEN_ADDRESS[CHAIN.id],
+    contractInterface: MyTokenAbi.abi,
+    ...args,
+  })
+}

@@ -23,6 +23,7 @@
       "@icons/*": ["icons/*"],
       "@assets/*": ["assets/*"],
       "@constants/*": ["constants/*"],
+      "@abis/*": ["abis/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

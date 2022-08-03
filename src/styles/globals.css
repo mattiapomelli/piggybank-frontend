@@ -5,4 +5,5 @@
 body {
   @apply font-main;
   background-color: #f5f5f5;
+  @apply font-main bg-background text-text-primary;
 }

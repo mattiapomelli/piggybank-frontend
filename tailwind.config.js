@@ -11,6 +11,12 @@ module.exports = {
       fontFamily: {
         main: ['Fira Code', ...fontFamily.mono],
       },
+      colors: {
+        text: {
+          primary: '#111827',
+        },
+        background: '#FCFCFC',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],
