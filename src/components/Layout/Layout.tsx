@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import UserNav from './UserNav'
+import Navbar from './Navbar'
 
 interface LayoutProps {
   children: ReactNode
@@ -8,12 +8,10 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
-      <UserNav />
-      <main className="flex-grow pb-20">
-        {children}
-      </main>
+      <Navbar />
+      <main className="flex-grow pb-20">{children}</main>
     </div>
-  );
+  )
 }
 
-export default Layout;
+export default Layout

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { Connector, useConnect } from 'wagmi'
 
-import Modal, { BaseModalProps } from '@components/Modal'
+import Modal, { BaseModalProps } from '@components/UI/Modal'
 import MetamaskIcon from '@icons/metamask.svg'
 import WalletConnectIcon from '@icons/walletconnect.svg'
 
@@ -35,14 +35,16 @@ const ConnectModal = ({ show, onClose }: BaseModalProps) => {
 
   return (
     <Modal show={show} onClose={onClose}>
-      <h4 className="font-bold text-xl mb-4">Connect your wallet</h4>
+      <h4 className="font-bold text-xl text-center mb-6">
+        Connect your wallet
+      </h4>
       <div className="flex flex-col gap-4">
         {connectors.map((connector) => (
           <button
             key={connector.id}
             onClick={() => onConnect(connector)}
             className={classNames(
-              'bg-gray-100 flex items-center px-4 py-3 rounded-default gap-4 ',
+              'bg-gray-100 flex items-center px-4 py-3 rounded-lg gap-4 ',
               connector.ready
                 ? 'hover:bg-gray-200'
                 : 'cursor-not-allowed opacity-60',

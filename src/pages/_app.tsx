@@ -9,7 +9,7 @@ import { publicProvider } from 'wagmi/providers/public'
 
 import { CHAIN } from '@constants/chains'
 import { ALCHEMY_KEY, ALCHEMY_RPC_URL } from '@constants/urls'
-import Layout from '@components/Layout'
+import Layout from '@components/Layout/Layout'
 
 const { chains, provider } = configureChains(
   [CHAIN],
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <Layout>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
       </Layout>
     </WagmiConfig>
   )

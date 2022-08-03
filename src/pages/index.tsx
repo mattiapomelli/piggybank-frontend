@@ -1,16 +1,13 @@
 import type { NextPage } from 'next'
-import { useAccount, useConnect } from 'wagmi'
-import DepositsList from '@components/DepositsList';
-const Home: NextPage = () => {
-  const { connector: activeConnector, isConnected, address } = useAccount()
-  const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect()
 
+import DepositsList from '@components/DepositsList'
+
+const Home: NextPage = () => {
   return (
     <>
-      <DepositsList/>
+      <DepositsList />
     </>
-    );
+  )
 }
 
 export default Home
