@@ -1,8 +1,13 @@
 import React from 'react'
-
+import Deposit from './UI/Deposit'
 function DepositsList() {
   return (
-    <div className="mb-3 items-center rounded-lg bg-white uppercase shadow-card last:mb-0 dark:bg-light-dark"></div>
+    <>
+      <Deposit name="New Bicycle" amount="100 USDC" depositDate="25/07/2022" withdrawalDate="25/09/2022" />
+      <Deposit name="New Bicycle" amount="100 USDC" depositDate="25/07/2022" withdrawalDate="25/09/2022" />
+      <Deposit name="New Bicycle" amount="100 USDC" depositDate="25/07/2022" withdrawalDate="25/09/2022" />
+      <Deposit name="New Bicycle" amount="100 USDC" depositDate="25/07/2022" withdrawalDate="25/09/2022" />
+    </>
   )
 }
 
