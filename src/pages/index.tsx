@@ -1,12 +1,14 @@
 import type { NextPage } from 'next'
 
-import DepositsList from '@components/DepositsList'
 import Container from '@components/Layout/Container'
+import DepositForm from '@components/Deposit/DepositForm'
+// import DepositsList from '@components/DepositsList'
 
 const Home: NextPage = () => {
   return (
-    <Container>
-      <DepositsList />
+    <Container className="py-6">
+      <DepositForm />
+      {/* <DepositsList /> */}
     </Container>
   )
 }
