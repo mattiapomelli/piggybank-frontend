@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useAccount, useConnect } from 'wagmi'
-
+import DepositsList from '@components/DepositsList';
 const Home: NextPage = () => {
   const { connector: activeConnector, isConnected, address } = useAccount()
   const { connect, connectors, error, isLoading, pendingConnector } =
@@ -8,24 +8,9 @@ const Home: NextPage = () => {
 
   return (
     <>
-      {isConnected && (
-        <div>
-          {address} Connected to {activeConnector?.name}
-        </div>
-      )}
-
-      {connectors.map((connector) => (
-        <button key={connector.id} onClick={() => connect({ connector })}>
-          {connector.id === 'injected' ? 'MetaMask' : connector.name}
-          {isLoading &&
-            pendingConnector?.id === connector.id &&
-            ' (connecting)'}
-        </button>
-      ))}
-
-      {error && <div>{error.message}</div>}
+      <DepositsList/>
     </>
-  )
+    );
 }
 
 export default Home

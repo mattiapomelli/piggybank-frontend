@@ -1,3 +1,5 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx}',
@@ -5,7 +7,11 @@ module.exports = {
     './src/layouts/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        main: ['Fira Code', ...fontFamily.mono],
+      },
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 }
