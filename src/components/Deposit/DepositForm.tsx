@@ -6,6 +6,7 @@ import InputField from '../UI/Input'
 interface DepositInputs {
   name: string
   amount: string
+  widthdrawalDate: string
 }
 
 const DepositForm = ({}) => {
@@ -36,6 +37,14 @@ const DepositForm = ({}) => {
         fullWidth
         error={errors.amount?.message}
         {...register('amount', { required: 'Amount is required' })}
+      />
+      <InputField
+        label="Withdrawal date"
+        id="withdrawalDate"
+        type="Date"
+        fullWidth
+        error={errors.withdrawalDate?.message}
+        {...register('withdrawalDate', { required: 'Withdrawal date is required' })}
       />
       <Button type="submit" className="mt-2">
         Deposit
