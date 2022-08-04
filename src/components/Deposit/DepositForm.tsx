@@ -102,7 +102,7 @@ const DepositForm = ({ onDepositSuccess }: DepositFormProps) => {
         />
         <InputField
           label="Amount"
-          placeholder="Enter amount"
+          placeholder="Enter amount in USDC"
           id="amount"
           type="number"
           fullWidth

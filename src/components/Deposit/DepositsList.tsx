@@ -27,8 +27,15 @@ function DepositsList({ deposits }: DepositsListProps) {
       <DepositsListHeader />
       <tbody
         role="rowgroup"
-        className="text-xs font-medium text-gray-900 dark:text-white 3xl:text-sm"
+        className="text-xs font-medium text-gray-900 3xl:text-sm"
       >
+        <Deposit
+          amount="250 USCD"
+          name="Bicicletta"
+          withdrawalDate="25/09/1999"
+          depositDate="25/09/1999"
+        />
+        
         {deposits?.map((deposit) => (
           <Deposit
             key={deposit.id.toString()}

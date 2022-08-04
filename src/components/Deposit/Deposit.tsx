@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, { useState } from "react"
+import WithdrawModal from "../Withdrawal/WithdrawModal"
 interface Props {
   amount: string
   depositDate: string
@@ -7,7 +7,9 @@ interface Props {
   name: string
 }
 
+
 function Deposit(props: Props) {
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false)
   return (
     <>
       <tr
@@ -82,11 +84,15 @@ function Deposit(props: Props) {
             width: '200px',
           }}
         >
-          <button className="buttonflex items-center rounded-lg border-2 border-dashed border-gray-500 bg-gray-100 px-6 text-sm uppercase tracking-wider text-gray-900 lg:h-12 3xl:h-13">
+          <button onClick={() => setShowWithdrawModal(true)} className="buttonflex items-center rounded-lg border-2 border-dashed border-gray-500 bg-gray-100 px-6 text-sm uppercase tracking-wider text-gray-900 lg:h-12 3xl:h-13">
             Withdraw Now
           </button>
         </td>
       </tr>
+      <WithdrawModal 
+    show={showWithdrawModal}
+    onClose={() => setShowWithdrawModal(false)}
+  />
     </>
   )
 }
