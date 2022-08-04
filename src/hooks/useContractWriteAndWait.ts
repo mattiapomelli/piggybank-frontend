@@ -4,11 +4,7 @@ import {
   ContractTransaction,
   providers,
 } from 'ethers'
-import {
-  useContractWrite,
-  usePrepareContractWrite,
-  useWaitForTransaction,
-} from 'wagmi'
+import { useContractWrite, useWaitForTransaction } from 'wagmi'
 
 import MyTokenAbi from '@abis/contracts/MyToken.json'
 import PiggyBankAbi from '@abis/contracts/PiggyBank.json'
@@ -66,11 +62,6 @@ const useContractWriteAndWait = <T extends Contract>({
   onSuccess,
   ...args
 }: UseContractWriteArgs<T>) => {
-  const { config } = usePrepareContractWrite({
-    ...args,
-    functionName: functionName as string,
-  })
-
   const {
     write,
     writeAsync,
@@ -78,7 +69,10 @@ const useContractWriteAndWait = <T extends Contract>({
     error: writeError,
     data: writeData,
     isLoading: isLoadingWrite,
-  } = useContractWrite(config)
+  } = useContractWrite({
+    ...args,
+    functionName: functionName as string,
+  })
 
   const {
     data,
