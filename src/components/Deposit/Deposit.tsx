@@ -1,13 +1,18 @@
-import React from 'react'
+import { PiggyBank } from '@abis/types'
+import { ethers } from 'ethers'
+import React, { useState } from 'react'
 
-interface Props {
-  amount: string
-  depositDate: string
-  withdrawalDate: string
-  name: string
+import WithdrawModal from '@components/Withdraw/WithdrawModal'
+import { formatDate } from '@utils/dates'
+
+interface DepositProps {
+  deposit: PiggyBank.DepositStructOutput
+  onWithdrawSuccess: () => void
 }
 
-function Deposit(props: Props) {
+function Deposit({ deposit, onWithdrawSuccess }: DepositProps) {
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false)
+
   return (
     <>
       <tr
@@ -25,7 +30,7 @@ function Deposit(props: Props) {
             width: '180px',
           }}
         >
-          {props.name}
+          {deposit.name}
         </td>
 
         <td
@@ -39,7 +44,7 @@ function Deposit(props: Props) {
           }}
         >
           <div className="ltr:text-right rtl:text-left">
-            {props.depositDate}
+            {formatDate(deposit.depositDate)}
           </div>
         </td>
         <td
@@ -53,7 +58,7 @@ function Deposit(props: Props) {
           }}
         >
           <div className="ltr:text-right rtl:text-left">
-            {props.withdrawalDate}
+            {formatDate(deposit.withdrawalDate)}
           </div>
         </td>
         <td
@@ -68,7 +73,7 @@ function Deposit(props: Props) {
         >
           <div className="-tracking-[1px] ltr:text-right rtl:text-left">
             <strong className="mb-0.5 flex justify-start text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
-              {props.amount}
+              {ethers.utils.formatEther(deposit.amount)}
             </strong>
           </div>
         </td>
@@ -82,9 +87,18 @@ function Deposit(props: Props) {
             width: '200px',
           }}
         >
-          <button className="buttonflex items-center rounded-lg border-2 border-dashed border-gray-500 bg-gray-100 px-6 text-sm uppercase tracking-wider text-gray-900 lg:h-12 3xl:h-13">
+          <button
+            onClick={() => setShowWithdrawModal(true)}
+            className="buttonflex items-center rounded-lg border-2 border-dashed border-gray-500 bg-gray-100 px-6 text-sm uppercase tracking-wider text-gray-900 lg:h-12 3xl:h-13"
+          >
             Withdraw Now
           </button>
+          <WithdrawModal
+            show={showWithdrawModal}
+            onClose={() => setShowWithdrawModal(false)}
+            deposit={deposit}
+            onWithdrawSuccess={onWithdrawSuccess}
+          />
         </td>
       </tr>
     </>

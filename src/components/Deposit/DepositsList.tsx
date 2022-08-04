@@ -1,23 +1,15 @@
 import React from 'react'
-import { useAccount } from 'wagmi'
 import { PiggyBank } from '@abis/types/'
 
 import Deposit from './Deposit'
 import DepositsListHeader from './DepositsListHeader'
-import { BigNumber, ethers } from 'ethers'
-
-const formatDate = (date: BigNumber) => {
-  const millis = Number(date.toString()) * 1000
-  return new Date(millis).toLocaleDateString()
-}
 
 interface DepositsListProps {
   deposits: PiggyBank.DepositStructOutput[]
+  onWithdrawSuccess: () => void
 }
 
-function DepositsList({ deposits }: DepositsListProps) {
-  const { address } = useAccount()
-
+function DepositsList({ deposits, onWithdrawSuccess }: DepositsListProps) {
   return (
     <table
       role="table"
@@ -32,10 +24,8 @@ function DepositsList({ deposits }: DepositsListProps) {
         {deposits?.map((deposit) => (
           <Deposit
             key={deposit.id.toString()}
-            amount={ethers.utils.formatEther(deposit.amount)}
-            name={deposit.name}
-            withdrawalDate={formatDate(deposit.withdrawalDate)}
-            depositDate={formatDate(deposit.depositDate)}
+            deposit={deposit}
+            onWithdrawSuccess={onWithdrawSuccess}
           />
         ))}
       </tbody>

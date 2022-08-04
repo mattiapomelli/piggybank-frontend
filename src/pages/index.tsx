@@ -21,7 +21,7 @@ const Home: NextPage = () => {
     <Container className="py-6">
       <DepositForm onDepositSuccess={refetch} />
       {address && !isReconnecting && deposits && (
-        <DepositsList deposits={deposits} />
+        <DepositsList deposits={deposits} onWithdrawSuccess={refetch} />
       )}
     </Container>
   )
