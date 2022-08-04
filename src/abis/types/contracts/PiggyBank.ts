@@ -12,30 +12,30 @@ import type {
   PopulatedTransaction,
   Signer,
   utils,
-} from "ethers";
+} from 'ethers'
 import type {
   FunctionFragment,
   Result,
   EventFragment,
-} from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
+} from '@ethersproject/abi'
+import type { Listener, Provider } from '@ethersproject/providers'
 import type {
   TypedEventFilter,
   TypedEvent,
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from "../common";
+} from '../common'
 
 export declare namespace PiggyBank {
   export type DepositStruct = {
-    id: PromiseOrValue<BigNumberish>;
-    depositDate: PromiseOrValue<BigNumberish>;
-    withdrawalDate: PromiseOrValue<BigNumberish>;
-    amount: PromiseOrValue<BigNumberish>;
-    name: PromiseOrValue<string>;
-    earlyWithdrawn: PromiseOrValue<boolean>;
-  };
+    id: PromiseOrValue<BigNumberish>
+    depositDate: PromiseOrValue<BigNumberish>
+    withdrawalDate: PromiseOrValue<BigNumberish>
+    amount: PromiseOrValue<BigNumberish>
+    name: PromiseOrValue<string>
+    earlyWithdrawn: PromiseOrValue<boolean>
+  }
 
   export type DepositStructOutput = [
     BigNumber,
@@ -43,747 +43,744 @@ export declare namespace PiggyBank {
     BigNumber,
     BigNumber,
     string,
-    boolean
+    boolean,
   ] & {
-    id: BigNumber;
-    depositDate: BigNumber;
-    withdrawalDate: BigNumber;
-    amount: BigNumber;
-    name: string;
-    earlyWithdrawn: boolean;
-  };
+    id: BigNumber
+    depositDate: BigNumber
+    withdrawalDate: BigNumber
+    amount: BigNumber
+    name: string
+    earlyWithdrawn: boolean
+  }
 }
 
 export interface PiggyBankInterface extends utils.Interface {
   functions: {
-    "claimRewards()": FunctionFragment;
-    "deposit(string,uint256,uint256)": FunctionFragment;
-    "deposits(uint256)": FunctionFragment;
-    "getUserDeposits()": FunctionFragment;
-    "getUserValidDeposit(address)": FunctionFragment;
-    "getUsers()": FunctionFragment;
-    "idCounter()": FunctionFragment;
-    "owner()": FunctionFragment;
-    "ownerBalance()": FunctionFragment;
-    "penaltyFee()": FunctionFragment;
-    "pendingRewards(address)": FunctionFragment;
-    "platformFee()": FunctionFragment;
-    "renounceOwnership()": FunctionFragment;
-    "rewardsDeadline()": FunctionFragment;
-    "rewardsSpan()": FunctionFragment;
-    "token()": FunctionFragment;
-    "totalBalance()": FunctionFragment;
-    "totalRewards()": FunctionFragment;
-    "transferOwnership(address)": FunctionFragment;
-    "udpateRewardBalances()": FunctionFragment;
-    "userDeposits(address,uint256)": FunctionFragment;
-    "users(uint256)": FunctionFragment;
-    "withdraw(uint256,uint256)": FunctionFragment;
-    "withdrawAll(uint256)": FunctionFragment;
-  };
+    'claimRewards()': FunctionFragment
+    'deposit(string,uint256,uint256)': FunctionFragment
+    'deposits(uint256)': FunctionFragment
+    'getUserDeposits(address)': FunctionFragment
+    'getUserValidDeposit(address)': FunctionFragment
+    'getUsers()': FunctionFragment
+    'idCounter()': FunctionFragment
+    'owner()': FunctionFragment
+    'ownerBalance()': FunctionFragment
+    'penaltyFee()': FunctionFragment
+    'pendingRewards(address)': FunctionFragment
+    'platformFee()': FunctionFragment
+    'renounceOwnership()': FunctionFragment
+    'rewardsDeadline()': FunctionFragment
+    'rewardsSpan()': FunctionFragment
+    'token()': FunctionFragment
+    'totalBalance()': FunctionFragment
+    'totalRewards()': FunctionFragment
+    'transferOwnership(address)': FunctionFragment
+    'udpateRewardBalances()': FunctionFragment
+    'userDeposits(address,uint256)': FunctionFragment
+    'users(uint256)': FunctionFragment
+    'withdraw(uint256,uint256)': FunctionFragment
+    'withdrawAll(uint256)': FunctionFragment
+  }
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "claimRewards"
-      | "deposit"
-      | "deposits"
-      | "getUserDeposits"
-      | "getUserValidDeposit"
-      | "getUsers"
-      | "idCounter"
-      | "owner"
-      | "ownerBalance"
-      | "penaltyFee"
-      | "pendingRewards"
-      | "platformFee"
-      | "renounceOwnership"
-      | "rewardsDeadline"
-      | "rewardsSpan"
-      | "token"
-      | "totalBalance"
-      | "totalRewards"
-      | "transferOwnership"
-      | "udpateRewardBalances"
-      | "userDeposits"
-      | "users"
-      | "withdraw"
-      | "withdrawAll"
-  ): FunctionFragment;
+      | 'claimRewards'
+      | 'deposit'
+      | 'deposits'
+      | 'getUserDeposits'
+      | 'getUserValidDeposit'
+      | 'getUsers'
+      | 'idCounter'
+      | 'owner'
+      | 'ownerBalance'
+      | 'penaltyFee'
+      | 'pendingRewards'
+      | 'platformFee'
+      | 'renounceOwnership'
+      | 'rewardsDeadline'
+      | 'rewardsSpan'
+      | 'token'
+      | 'totalBalance'
+      | 'totalRewards'
+      | 'transferOwnership'
+      | 'udpateRewardBalances'
+      | 'userDeposits'
+      | 'users'
+      | 'withdraw'
+      | 'withdrawAll',
+  ): FunctionFragment
 
   encodeFunctionData(
-    functionFragment: "claimRewards",
-    values?: undefined
-  ): string;
+    functionFragment: 'claimRewards',
+    values?: undefined,
+  ): string
   encodeFunctionData(
-    functionFragment: "deposit",
+    functionFragment: 'deposit',
     values: [
       PromiseOrValue<string>,
       PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>
-    ]
-  ): string;
+      PromiseOrValue<BigNumberish>,
+    ],
+  ): string
   encodeFunctionData(
-    functionFragment: "deposits",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
+    functionFragment: 'deposits',
+    values: [PromiseOrValue<BigNumberish>],
+  ): string
   encodeFunctionData(
-    functionFragment: "getUserDeposits",
-    values?: undefined
-  ): string;
+    functionFragment: 'getUserDeposits',
+    values: [PromiseOrValue<string>],
+  ): string
   encodeFunctionData(
-    functionFragment: "getUserValidDeposit",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(functionFragment: "getUsers", values?: undefined): string;
-  encodeFunctionData(functionFragment: "idCounter", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
+    functionFragment: 'getUserValidDeposit',
+    values: [PromiseOrValue<string>],
+  ): string
+  encodeFunctionData(functionFragment: 'getUsers', values?: undefined): string
+  encodeFunctionData(functionFragment: 'idCounter', values?: undefined): string
+  encodeFunctionData(functionFragment: 'owner', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "ownerBalance",
-    values?: undefined
-  ): string;
+    functionFragment: 'ownerBalance',
+    values?: undefined,
+  ): string
+  encodeFunctionData(functionFragment: 'penaltyFee', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "penaltyFee",
-    values?: undefined
-  ): string;
+    functionFragment: 'pendingRewards',
+    values: [PromiseOrValue<string>],
+  ): string
   encodeFunctionData(
-    functionFragment: "pendingRewards",
-    values: [PromiseOrValue<string>]
-  ): string;
+    functionFragment: 'platformFee',
+    values?: undefined,
+  ): string
   encodeFunctionData(
-    functionFragment: "platformFee",
-    values?: undefined
-  ): string;
+    functionFragment: 'renounceOwnership',
+    values?: undefined,
+  ): string
   encodeFunctionData(
-    functionFragment: "renounceOwnership",
-    values?: undefined
-  ): string;
+    functionFragment: 'rewardsDeadline',
+    values?: undefined,
+  ): string
   encodeFunctionData(
-    functionFragment: "rewardsDeadline",
-    values?: undefined
-  ): string;
+    functionFragment: 'rewardsSpan',
+    values?: undefined,
+  ): string
+  encodeFunctionData(functionFragment: 'token', values?: undefined): string
   encodeFunctionData(
-    functionFragment: "rewardsSpan",
-    values?: undefined
-  ): string;
-  encodeFunctionData(functionFragment: "token", values?: undefined): string;
+    functionFragment: 'totalBalance',
+    values?: undefined,
+  ): string
   encodeFunctionData(
-    functionFragment: "totalBalance",
-    values?: undefined
-  ): string;
+    functionFragment: 'totalRewards',
+    values?: undefined,
+  ): string
   encodeFunctionData(
-    functionFragment: "totalRewards",
-    values?: undefined
-  ): string;
+    functionFragment: 'transferOwnership',
+    values: [PromiseOrValue<string>],
+  ): string
   encodeFunctionData(
-    functionFragment: "transferOwnership",
-    values: [PromiseOrValue<string>]
-  ): string;
+    functionFragment: 'udpateRewardBalances',
+    values?: undefined,
+  ): string
   encodeFunctionData(
-    functionFragment: "udpateRewardBalances",
-    values?: undefined
-  ): string;
+    functionFragment: 'userDeposits',
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>],
+  ): string
   encodeFunctionData(
-    functionFragment: "userDeposits",
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
-  ): string;
+    functionFragment: 'users',
+    values: [PromiseOrValue<BigNumberish>],
+  ): string
   encodeFunctionData(
-    functionFragment: "users",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
+    functionFragment: 'withdraw',
+    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>],
+  ): string
   encodeFunctionData(
-    functionFragment: "withdraw",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "withdrawAll",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
+    functionFragment: 'withdrawAll',
+    values: [PromiseOrValue<BigNumberish>],
+  ): string
 
   decodeFunctionResult(
-    functionFragment: "claimRewards",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "deposit", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "deposits", data: BytesLike): Result;
+    functionFragment: 'claimRewards',
+    data: BytesLike,
+  ): Result
+  decodeFunctionResult(functionFragment: 'deposit', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'deposits', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "getUserDeposits",
-    data: BytesLike
-  ): Result;
+    functionFragment: 'getUserDeposits',
+    data: BytesLike,
+  ): Result
   decodeFunctionResult(
-    functionFragment: "getUserValidDeposit",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "getUsers", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "idCounter", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
+    functionFragment: 'getUserValidDeposit',
+    data: BytesLike,
+  ): Result
+  decodeFunctionResult(functionFragment: 'getUsers', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'idCounter', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'owner', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "ownerBalance",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "penaltyFee", data: BytesLike): Result;
+    functionFragment: 'ownerBalance',
+    data: BytesLike,
+  ): Result
+  decodeFunctionResult(functionFragment: 'penaltyFee', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "pendingRewards",
-    data: BytesLike
-  ): Result;
+    functionFragment: 'pendingRewards',
+    data: BytesLike,
+  ): Result
+  decodeFunctionResult(functionFragment: 'platformFee', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "platformFee",
-    data: BytesLike
-  ): Result;
+    functionFragment: 'renounceOwnership',
+    data: BytesLike,
+  ): Result
   decodeFunctionResult(
-    functionFragment: "renounceOwnership",
-    data: BytesLike
-  ): Result;
+    functionFragment: 'rewardsDeadline',
+    data: BytesLike,
+  ): Result
+  decodeFunctionResult(functionFragment: 'rewardsSpan', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'token', data: BytesLike): Result
   decodeFunctionResult(
-    functionFragment: "rewardsDeadline",
-    data: BytesLike
-  ): Result;
+    functionFragment: 'totalBalance',
+    data: BytesLike,
+  ): Result
   decodeFunctionResult(
-    functionFragment: "rewardsSpan",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "token", data: BytesLike): Result;
+    functionFragment: 'totalRewards',
+    data: BytesLike,
+  ): Result
   decodeFunctionResult(
-    functionFragment: "totalBalance",
-    data: BytesLike
-  ): Result;
+    functionFragment: 'transferOwnership',
+    data: BytesLike,
+  ): Result
   decodeFunctionResult(
-    functionFragment: "totalRewards",
-    data: BytesLike
-  ): Result;
+    functionFragment: 'udpateRewardBalances',
+    data: BytesLike,
+  ): Result
   decodeFunctionResult(
-    functionFragment: "transferOwnership",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "udpateRewardBalances",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "userDeposits",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "users", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "withdrawAll",
-    data: BytesLike
-  ): Result;
+    functionFragment: 'userDeposits',
+    data: BytesLike,
+  ): Result
+  decodeFunctionResult(functionFragment: 'users', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'withdraw', data: BytesLike): Result
+  decodeFunctionResult(functionFragment: 'withdrawAll', data: BytesLike): Result
 
   events: {
-    "OwnershipTransferred(address,address)": EventFragment;
-  };
+    'OwnershipTransferred(address,address)': EventFragment
+  }
 
-  getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'OwnershipTransferred'): EventFragment
 }
 
 export interface OwnershipTransferredEventObject {
-  previousOwner: string;
-  newOwner: string;
+  previousOwner: string
+  newOwner: string
 }
 export type OwnershipTransferredEvent = TypedEvent<
   [string, string],
   OwnershipTransferredEventObject
->;
+>
 
 export type OwnershipTransferredEventFilter =
-  TypedEventFilter<OwnershipTransferredEvent>;
+  TypedEventFilter<OwnershipTransferredEvent>
 
 export interface PiggyBank extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
+  connect(signerOrProvider: Signer | Provider | string): this
+  attach(addressOrName: string): this
+  deployed(): Promise<this>
 
-  interface: PiggyBankInterface;
+  interface: PiggyBankInterface
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
     fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
+    toBlock?: string | number | undefined,
+  ): Promise<Array<TEvent>>
 
   listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
+    eventFilter?: TypedEventFilter<TEvent>,
+  ): Array<TypedListener<TEvent>>
+  listeners(eventName?: string): Array<Listener>
   removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
+    eventFilter: TypedEventFilter<TEvent>,
+  ): this
+  removeAllListeners(eventName?: string): this
+  off: OnEvent<this>
+  on: OnEvent<this>
+  once: OnEvent<this>
+  removeListener: OnEvent<this>
 
   functions: {
     claimRewards(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<ContractTransaction>
 
     deposit(
       name: PromiseOrValue<string>,
       withdrawalDate: PromiseOrValue<BigNumberish>,
       amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<ContractTransaction>
 
     deposits(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber, BigNumber, string, boolean] & {
-        id: BigNumber;
-        depositDate: BigNumber;
-        withdrawalDate: BigNumber;
-        amount: BigNumber;
-        name: string;
-        earlyWithdrawn: boolean;
+        id: BigNumber
+        depositDate: BigNumber
+        withdrawalDate: BigNumber
+        amount: BigNumber
+        name: string
+        earlyWithdrawn: boolean
       }
-    >;
+    >
 
     getUserDeposits(
-      overrides?: CallOverrides
-    ): Promise<[PiggyBank.DepositStructOutput[]]>;
+      user: PromiseOrValue<string>,
+      overrides?: CallOverrides,
+    ): Promise<[PiggyBank.DepositStructOutput[]]>
 
     getUserValidDeposit(
       user: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
+      overrides?: CallOverrides,
+    ): Promise<[BigNumber]>
 
-    getUsers(overrides?: CallOverrides): Promise<[string[]]>;
+    getUsers(overrides?: CallOverrides): Promise<[string[]]>
 
     idCounter(
-      overrides?: CallOverrides
-    ): Promise<[BigNumber] & { _value: BigNumber }>;
+      overrides?: CallOverrides,
+    ): Promise<[BigNumber] & { _value: BigNumber }>
 
-    owner(overrides?: CallOverrides): Promise<[string]>;
+    owner(overrides?: CallOverrides): Promise<[string]>
 
-    ownerBalance(overrides?: CallOverrides): Promise<[BigNumber]>;
+    ownerBalance(overrides?: CallOverrides): Promise<[BigNumber]>
 
-    penaltyFee(overrides?: CallOverrides): Promise<[number]>;
+    penaltyFee(overrides?: CallOverrides): Promise<[number]>
 
     pendingRewards(
       arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
+      overrides?: CallOverrides,
+    ): Promise<[BigNumber]>
 
-    platformFee(overrides?: CallOverrides): Promise<[number]>;
+    platformFee(overrides?: CallOverrides): Promise<[number]>
 
     renounceOwnership(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<ContractTransaction>
 
-    rewardsDeadline(overrides?: CallOverrides): Promise<[BigNumber]>;
+    rewardsDeadline(overrides?: CallOverrides): Promise<[BigNumber]>
 
-    rewardsSpan(overrides?: CallOverrides): Promise<[BigNumber]>;
+    rewardsSpan(overrides?: CallOverrides): Promise<[BigNumber]>
 
-    token(overrides?: CallOverrides): Promise<[string]>;
+    token(overrides?: CallOverrides): Promise<[string]>
 
-    totalBalance(overrides?: CallOverrides): Promise<[BigNumber]>;
+    totalBalance(overrides?: CallOverrides): Promise<[BigNumber]>
 
-    totalRewards(overrides?: CallOverrides): Promise<[BigNumber]>;
+    totalRewards(overrides?: CallOverrides): Promise<[BigNumber]>
 
     transferOwnership(
       newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<ContractTransaction>
 
     udpateRewardBalances(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<ContractTransaction>
 
     userDeposits(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
+      overrides?: CallOverrides,
+    ): Promise<[BigNumber]>
 
     users(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
+      overrides?: CallOverrides,
+    ): Promise<[string]>
 
     withdraw(
       id: PromiseOrValue<BigNumberish>,
       amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<ContractTransaction>
 
     withdrawAll(
       id: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-  };
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<ContractTransaction>
+  }
 
   claimRewards(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
+  ): Promise<ContractTransaction>
 
   deposit(
     name: PromiseOrValue<string>,
     withdrawalDate: PromiseOrValue<BigNumberish>,
     amount: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
+  ): Promise<ContractTransaction>
 
   deposits(
     arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
+    overrides?: CallOverrides,
   ): Promise<
     [BigNumber, BigNumber, BigNumber, BigNumber, string, boolean] & {
-      id: BigNumber;
-      depositDate: BigNumber;
-      withdrawalDate: BigNumber;
-      amount: BigNumber;
-      name: string;
-      earlyWithdrawn: boolean;
+      id: BigNumber
+      depositDate: BigNumber
+      withdrawalDate: BigNumber
+      amount: BigNumber
+      name: string
+      earlyWithdrawn: boolean
     }
-  >;
+  >
 
   getUserDeposits(
-    overrides?: CallOverrides
-  ): Promise<PiggyBank.DepositStructOutput[]>;
+    user: PromiseOrValue<string>,
+    overrides?: CallOverrides,
+  ): Promise<PiggyBank.DepositStructOutput[]>
 
   getUserValidDeposit(
     user: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
+    overrides?: CallOverrides,
+  ): Promise<BigNumber>
 
-  getUsers(overrides?: CallOverrides): Promise<string[]>;
+  getUsers(overrides?: CallOverrides): Promise<string[]>
 
-  idCounter(overrides?: CallOverrides): Promise<BigNumber>;
+  idCounter(overrides?: CallOverrides): Promise<BigNumber>
 
-  owner(overrides?: CallOverrides): Promise<string>;
+  owner(overrides?: CallOverrides): Promise<string>
 
-  ownerBalance(overrides?: CallOverrides): Promise<BigNumber>;
+  ownerBalance(overrides?: CallOverrides): Promise<BigNumber>
 
-  penaltyFee(overrides?: CallOverrides): Promise<number>;
+  penaltyFee(overrides?: CallOverrides): Promise<number>
 
   pendingRewards(
     arg0: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
+    overrides?: CallOverrides,
+  ): Promise<BigNumber>
 
-  platformFee(overrides?: CallOverrides): Promise<number>;
+  platformFee(overrides?: CallOverrides): Promise<number>
 
   renounceOwnership(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
+  ): Promise<ContractTransaction>
 
-  rewardsDeadline(overrides?: CallOverrides): Promise<BigNumber>;
+  rewardsDeadline(overrides?: CallOverrides): Promise<BigNumber>
 
-  rewardsSpan(overrides?: CallOverrides): Promise<BigNumber>;
+  rewardsSpan(overrides?: CallOverrides): Promise<BigNumber>
 
-  token(overrides?: CallOverrides): Promise<string>;
+  token(overrides?: CallOverrides): Promise<string>
 
-  totalBalance(overrides?: CallOverrides): Promise<BigNumber>;
+  totalBalance(overrides?: CallOverrides): Promise<BigNumber>
 
-  totalRewards(overrides?: CallOverrides): Promise<BigNumber>;
+  totalRewards(overrides?: CallOverrides): Promise<BigNumber>
 
   transferOwnership(
     newOwner: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
+  ): Promise<ContractTransaction>
 
   udpateRewardBalances(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
+  ): Promise<ContractTransaction>
 
   userDeposits(
     arg0: PromiseOrValue<string>,
     arg1: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
+    overrides?: CallOverrides,
+  ): Promise<BigNumber>
 
   users(
     arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<string>;
+    overrides?: CallOverrides,
+  ): Promise<string>
 
   withdraw(
     id: PromiseOrValue<BigNumberish>,
     amount: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
+  ): Promise<ContractTransaction>
 
   withdrawAll(
     id: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
+    overrides?: Overrides & { from?: PromiseOrValue<string> },
+  ): Promise<ContractTransaction>
 
   callStatic: {
-    claimRewards(overrides?: CallOverrides): Promise<void>;
+    claimRewards(overrides?: CallOverrides): Promise<void>
 
     deposit(
       name: PromiseOrValue<string>,
       withdrawalDate: PromiseOrValue<BigNumberish>,
       amount: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
+      overrides?: CallOverrides,
+    ): Promise<void>
 
     deposits(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
+      overrides?: CallOverrides,
     ): Promise<
       [BigNumber, BigNumber, BigNumber, BigNumber, string, boolean] & {
-        id: BigNumber;
-        depositDate: BigNumber;
-        withdrawalDate: BigNumber;
-        amount: BigNumber;
-        name: string;
-        earlyWithdrawn: boolean;
+        id: BigNumber
+        depositDate: BigNumber
+        withdrawalDate: BigNumber
+        amount: BigNumber
+        name: string
+        earlyWithdrawn: boolean
       }
-    >;
+    >
 
     getUserDeposits(
-      overrides?: CallOverrides
-    ): Promise<PiggyBank.DepositStructOutput[]>;
+      user: PromiseOrValue<string>,
+      overrides?: CallOverrides,
+    ): Promise<PiggyBank.DepositStructOutput[]>
 
     getUserValidDeposit(
       user: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>
 
-    getUsers(overrides?: CallOverrides): Promise<string[]>;
+    getUsers(overrides?: CallOverrides): Promise<string[]>
 
-    idCounter(overrides?: CallOverrides): Promise<BigNumber>;
+    idCounter(overrides?: CallOverrides): Promise<BigNumber>
 
-    owner(overrides?: CallOverrides): Promise<string>;
+    owner(overrides?: CallOverrides): Promise<string>
 
-    ownerBalance(overrides?: CallOverrides): Promise<BigNumber>;
+    ownerBalance(overrides?: CallOverrides): Promise<BigNumber>
 
-    penaltyFee(overrides?: CallOverrides): Promise<number>;
+    penaltyFee(overrides?: CallOverrides): Promise<number>
 
     pendingRewards(
       arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>
 
-    platformFee(overrides?: CallOverrides): Promise<number>;
+    platformFee(overrides?: CallOverrides): Promise<number>
 
-    renounceOwnership(overrides?: CallOverrides): Promise<void>;
+    renounceOwnership(overrides?: CallOverrides): Promise<void>
 
-    rewardsDeadline(overrides?: CallOverrides): Promise<BigNumber>;
+    rewardsDeadline(overrides?: CallOverrides): Promise<BigNumber>
 
-    rewardsSpan(overrides?: CallOverrides): Promise<BigNumber>;
+    rewardsSpan(overrides?: CallOverrides): Promise<BigNumber>
 
-    token(overrides?: CallOverrides): Promise<string>;
+    token(overrides?: CallOverrides): Promise<string>
 
-    totalBalance(overrides?: CallOverrides): Promise<BigNumber>;
+    totalBalance(overrides?: CallOverrides): Promise<BigNumber>
 
-    totalRewards(overrides?: CallOverrides): Promise<BigNumber>;
+    totalRewards(overrides?: CallOverrides): Promise<BigNumber>
 
     transferOwnership(
       newOwner: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
+      overrides?: CallOverrides,
+    ): Promise<void>
 
-    udpateRewardBalances(overrides?: CallOverrides): Promise<void>;
+    udpateRewardBalances(overrides?: CallOverrides): Promise<void>
 
     userDeposits(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>
 
     users(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<string>;
+      overrides?: CallOverrides,
+    ): Promise<string>
 
     withdraw(
       id: PromiseOrValue<BigNumberish>,
       amount: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
+      overrides?: CallOverrides,
+    ): Promise<void>
 
     withdrawAll(
       id: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-  };
+      overrides?: CallOverrides,
+    ): Promise<void>
+  }
 
   filters: {
-    "OwnershipTransferred(address,address)"(
+    'OwnershipTransferred(address,address)'(
       previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
+      newOwner?: PromiseOrValue<string> | null,
+    ): OwnershipTransferredEventFilter
     OwnershipTransferred(
       previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferredEventFilter;
-  };
+      newOwner?: PromiseOrValue<string> | null,
+    ): OwnershipTransferredEventFilter
+  }
 
   estimateGas: {
     claimRewards(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<BigNumber>
 
     deposit(
       name: PromiseOrValue<string>,
       withdrawalDate: PromiseOrValue<BigNumberish>,
       amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<BigNumber>
 
     deposits(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>
 
-    getUserDeposits(overrides?: CallOverrides): Promise<BigNumber>;
+    getUserDeposits(
+      user: PromiseOrValue<string>,
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>
 
     getUserValidDeposit(
       user: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>
 
-    getUsers(overrides?: CallOverrides): Promise<BigNumber>;
+    getUsers(overrides?: CallOverrides): Promise<BigNumber>
 
-    idCounter(overrides?: CallOverrides): Promise<BigNumber>;
+    idCounter(overrides?: CallOverrides): Promise<BigNumber>
 
-    owner(overrides?: CallOverrides): Promise<BigNumber>;
+    owner(overrides?: CallOverrides): Promise<BigNumber>
 
-    ownerBalance(overrides?: CallOverrides): Promise<BigNumber>;
+    ownerBalance(overrides?: CallOverrides): Promise<BigNumber>
 
-    penaltyFee(overrides?: CallOverrides): Promise<BigNumber>;
+    penaltyFee(overrides?: CallOverrides): Promise<BigNumber>
 
     pendingRewards(
       arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>
 
-    platformFee(overrides?: CallOverrides): Promise<BigNumber>;
+    platformFee(overrides?: CallOverrides): Promise<BigNumber>
 
     renounceOwnership(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<BigNumber>
 
-    rewardsDeadline(overrides?: CallOverrides): Promise<BigNumber>;
+    rewardsDeadline(overrides?: CallOverrides): Promise<BigNumber>
 
-    rewardsSpan(overrides?: CallOverrides): Promise<BigNumber>;
+    rewardsSpan(overrides?: CallOverrides): Promise<BigNumber>
 
-    token(overrides?: CallOverrides): Promise<BigNumber>;
+    token(overrides?: CallOverrides): Promise<BigNumber>
 
-    totalBalance(overrides?: CallOverrides): Promise<BigNumber>;
+    totalBalance(overrides?: CallOverrides): Promise<BigNumber>
 
-    totalRewards(overrides?: CallOverrides): Promise<BigNumber>;
+    totalRewards(overrides?: CallOverrides): Promise<BigNumber>
 
     transferOwnership(
       newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<BigNumber>
 
     udpateRewardBalances(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<BigNumber>
 
     userDeposits(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>
 
     users(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+      overrides?: CallOverrides,
+    ): Promise<BigNumber>
 
     withdraw(
       id: PromiseOrValue<BigNumberish>,
       amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<BigNumber>
 
     withdrawAll(
       id: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-  };
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<BigNumber>
+  }
 
   populateTransaction: {
     claimRewards(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<PopulatedTransaction>
 
     deposit(
       name: PromiseOrValue<string>,
       withdrawalDate: PromiseOrValue<BigNumberish>,
       amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<PopulatedTransaction>
 
     deposits(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+      overrides?: CallOverrides,
+    ): Promise<PopulatedTransaction>
 
-    getUserDeposits(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getUserDeposits(
+      user: PromiseOrValue<string>,
+      overrides?: CallOverrides,
+    ): Promise<PopulatedTransaction>
 
     getUserValidDeposit(
       user: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+      overrides?: CallOverrides,
+    ): Promise<PopulatedTransaction>
 
-    getUsers(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    getUsers(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    idCounter(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    idCounter(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    ownerBalance(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    ownerBalance(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    penaltyFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    penaltyFee(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     pendingRewards(
       arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+      overrides?: CallOverrides,
+    ): Promise<PopulatedTransaction>
 
-    platformFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    platformFee(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     renounceOwnership(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<PopulatedTransaction>
 
-    rewardsDeadline(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    rewardsDeadline(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    rewardsSpan(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    rewardsSpan(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    token(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    token(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    totalBalance(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    totalBalance(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
-    totalRewards(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    totalRewards(overrides?: CallOverrides): Promise<PopulatedTransaction>
 
     transferOwnership(
       newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<PopulatedTransaction>
 
     udpateRewardBalances(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<PopulatedTransaction>
 
     userDeposits(
       arg0: PromiseOrValue<string>,
       arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+      overrides?: CallOverrides,
+    ): Promise<PopulatedTransaction>
 
     users(
       arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+      overrides?: CallOverrides,
+    ): Promise<PopulatedTransaction>
 
     withdraw(
       id: PromiseOrValue<BigNumberish>,
       amount: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<PopulatedTransaction>
 
     withdrawAll(
       id: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-  };
+      overrides?: Overrides & { from?: PromiseOrValue<string> },
+    ): Promise<PopulatedTransaction>
+  }
 }

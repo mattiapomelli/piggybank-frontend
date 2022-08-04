@@ -70,6 +70,7 @@ const DepositForm = ({}) => {
   const onSubmit = handleSubmit((data) => {
     const { name, amount, withdrawalDate } = data
     const depositAmount = ethers.utils.parseEther(amount)
+    const formattedWithdrawalDate = new Date(withdrawalDate).getTime() / 1000
 
     if (allowance && allowance.lt(depositAmount)) {
       setNeedsApprove(true)
@@ -77,7 +78,7 @@ const DepositForm = ({}) => {
     }
 
     deposit({
-      args: [name, depositAmount, new Date(withdrawalDate).getTime()],
+      args: [name, formattedWithdrawalDate, depositAmount],
     })
   })
 
