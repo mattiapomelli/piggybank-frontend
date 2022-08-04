@@ -1,4 +1,3 @@
-import { usePiggyBankContractRead } from '@hooks/useContractRead'
 import React from 'react'
 import { useAccount } from 'wagmi'
 import { PiggyBank } from '@abis/types/'
@@ -12,15 +11,12 @@ const formatDate = (date: BigNumber) => {
   return new Date(millis).toLocaleDateString()
 }
 
-function DepositsList() {
+interface DepositsListProps {
+  deposits: PiggyBank.DepositStructOutput[]
+}
+
+function DepositsList({ deposits }: DepositsListProps) {
   const { address } = useAccount()
-  const { data: deposits } = usePiggyBankContractRead<
-    PiggyBank.DepositStructOutput[]
-  >({
-    functionName: 'getUserDeposits',
-    args: [address],
-    enabled: address !== undefined,
-  })
 
   return (
     <table

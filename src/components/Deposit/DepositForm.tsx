@@ -19,7 +19,11 @@ interface DepositInputs {
   withdrawalDate: string
 }
 
-const DepositForm = ({}) => {
+interface DepositFormProps {
+  onDepositSuccess: () => void
+}
+
+const DepositForm = ({ onDepositSuccess }: DepositFormProps) => {
   const {
     register,
     handleSubmit,
@@ -55,6 +59,8 @@ const DepositForm = ({}) => {
     functionName: 'deposit',
     onSuccess() {
       reset()
+      refetch()
+      onDepositSuccess()
     },
   })
 
