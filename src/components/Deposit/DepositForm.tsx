@@ -98,11 +98,15 @@ const DepositForm = ({}) => {
         <InputField
           label="Withdrawal date"
           id="withdrawalDate"
-          type="Date"
+          type="date"
           fullWidth
           error={errors.withdrawalDate?.message}
           {...register('withdrawalDate', {
             required: 'Withdrawal date is required',
+            validate: (value) => {
+              if (new Date(value).getTime() < Date.now())
+                return 'Date should be in the future'
+            },
           })}
         />
         <Button
