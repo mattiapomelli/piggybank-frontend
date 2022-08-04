@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import React, { useState } from "react"
-import WithdrawModal from "../Withdrawal/WithdrawModal"
-interface Props {
-  amount: string
-  depositDate: string
-  withdrawalDate: string
-  name: string
-}
-
-
-function Deposit(props: Props) {
-  const [showWithdrawModal, setShowWithdrawModal] = useState(false)
-=======
 import { PiggyBank } from '@abis/types'
 import { ethers } from 'ethers'
 import React, { useState } from 'react'
@@ -30,7 +16,6 @@ function Deposit({ deposit, onWithdrawSuccess }: DepositProps) {
 
   const { balance } = useTokenBalance()
 
->>>>>>> 0f2e2757d3ff29c456990e4c15f21e1a11854df9
   return (
     <>
       <tr
@@ -105,14 +90,10 @@ function Deposit({ deposit, onWithdrawSuccess }: DepositProps) {
             width: '200px',
           }}
         >
-<<<<<<< HEAD
-          <button onClick={() => setShowWithdrawModal(true)} className="buttonflex items-center rounded-lg border-2 border-dashed border-gray-500 bg-gray-100 px-6 text-sm uppercase tracking-wider text-gray-900 lg:h-12 3xl:h-13">
-=======
           <button
             onClick={() => setShowWithdrawModal(true)}
             className="buttonflex items-center rounded-lg border-2 border-dashed border-gray-500 bg-gray-100 px-6 text-sm uppercase tracking-wider text-gray-900 lg:h-12 3xl:h-13"
           >
->>>>>>> 0f2e2757d3ff29c456990e4c15f21e1a11854df9
             Withdraw Now
           </button>
           <WithdrawModal
