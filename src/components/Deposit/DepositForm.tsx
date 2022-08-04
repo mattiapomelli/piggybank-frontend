@@ -35,7 +35,11 @@ const DepositForm = ({}) => {
     args: [address, PIGGY_BANK_ADDRESS[CHAIN.id]],
   })
 
-  const { write: approve, isLoading: loadingApprove } = useTokenContractWrite({
+  const {
+    write: approve,
+    isLoading: loadingApprove,
+    error: approveError,
+  } = useTokenContractWrite({
     functionName: 'approve',
     onSuccess() {
       setNeedsApprove(false)
@@ -43,13 +47,16 @@ const DepositForm = ({}) => {
     },
   })
 
-  const { write: deposit, isLoading: loadingDeposit } =
-    usePiggyBankContractWrite({
-      functionName: 'deposit',
-      onSuccess() {
-        reset()
-      },
-    })
+  const {
+    write: deposit,
+    isLoading: loadingDeposit,
+    error: depositError,
+  } = usePiggyBankContractWrite({
+    functionName: 'deposit',
+    onSuccess() {
+      reset()
+    },
+  })
 
   const onApprove = () => {
     approve({
@@ -134,6 +141,13 @@ const DepositForm = ({}) => {
               Approve
             </Button>
           </div>
+        </div>
+      )}
+      {(approveError || depositError) && (
+        <div className="bg-red-200 rounded-xl mt-8 p-6 text-red-700">
+          {approveError?.message ||
+            depositError?.message ||
+            'Something went wrong'}
         </div>
       )}
     </>
