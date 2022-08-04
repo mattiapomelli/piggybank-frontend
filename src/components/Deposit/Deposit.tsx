@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 import WithdrawModal from '@components/Withdraw/WithdrawModal'
 import { formatDate } from '@utils/dates'
+import useTokenBalance from '@hooks/useTokenBalance'
 
 interface DepositProps {
   deposit: PiggyBank.DepositStructOutput
@@ -12,6 +13,8 @@ interface DepositProps {
 
 function Deposit({ deposit, onWithdrawSuccess }: DepositProps) {
   const [showWithdrawModal, setShowWithdrawModal] = useState(false)
+
+  const { balance } = useTokenBalance()
 
   return (
     <>
@@ -73,7 +76,7 @@ function Deposit({ deposit, onWithdrawSuccess }: DepositProps) {
         >
           <div className="-tracking-[1px] ltr:text-right rtl:text-left">
             <strong className="mb-0.5 flex justify-start text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
-              {ethers.utils.formatEther(deposit.amount)}
+              {ethers.utils.formatEther(deposit.amount)} {balance?.symbol}
             </strong>
           </div>
         </td>

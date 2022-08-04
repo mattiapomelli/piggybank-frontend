@@ -13,7 +13,7 @@ function DepositsList({ deposits, onWithdrawSuccess }: DepositsListProps) {
   return (
     <table
       role="table"
-      className="mt-20 transaction-table w-full border-separate border-0"
+      className="transaction-table w-full border-separate border-0"
       style={{ minWidth: '880px' }}
     >
       <DepositsListHeader />
