@@ -104,10 +104,6 @@ function Deposit({ deposit, onWithdrawSuccess }: DepositProps) {
           />
         </td>
       </tr>
-      <WithdrawModal 
-    show={showWithdrawModal}
-    onClose={() => setShowWithdrawModal(false)}
-  />
     </>
   )
 }
