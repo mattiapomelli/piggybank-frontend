@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react"
 import WithdrawModal from "../Withdrawal/WithdrawModal"
 interface Props {
@@ -10,6 +11,26 @@ interface Props {
 
 function Deposit(props: Props) {
   const [showWithdrawModal, setShowWithdrawModal] = useState(false)
+=======
+import { PiggyBank } from '@abis/types'
+import { ethers } from 'ethers'
+import React, { useState } from 'react'
+
+import WithdrawModal from '@components/Withdraw/WithdrawModal'
+import { formatDate } from '@utils/dates'
+import useTokenBalance from '@hooks/useTokenBalance'
+
+interface DepositProps {
+  deposit: PiggyBank.DepositStructOutput
+  onWithdrawSuccess: () => void
+}
+
+function Deposit({ deposit, onWithdrawSuccess }: DepositProps) {
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false)
+
+  const { balance } = useTokenBalance()
+
+>>>>>>> 0f2e2757d3ff29c456990e4c15f21e1a11854df9
   return (
     <>
       <tr
@@ -27,7 +48,7 @@ function Deposit(props: Props) {
             width: '180px',
           }}
         >
-          {props.name}
+          {deposit.name}
         </td>
 
         <td
@@ -41,7 +62,7 @@ function Deposit(props: Props) {
           }}
         >
           <div className="ltr:text-right rtl:text-left">
-            {props.depositDate}
+            {formatDate(deposit.depositDate)}
           </div>
         </td>
         <td
@@ -55,7 +76,7 @@ function Deposit(props: Props) {
           }}
         >
           <div className="ltr:text-right rtl:text-left">
-            {props.withdrawalDate}
+            {formatDate(deposit.withdrawalDate)}
           </div>
         </td>
         <td
@@ -70,7 +91,7 @@ function Deposit(props: Props) {
         >
           <div className="-tracking-[1px] ltr:text-right rtl:text-left">
             <strong className="mb-0.5 flex justify-start text-base md:mb-1.5 md:text-lg lg:text-base 3xl:text-2xl">
-              {props.amount}
+              {ethers.utils.formatEther(deposit.amount)} {balance?.symbol}
             </strong>
           </div>
         </td>
@@ -84,9 +105,22 @@ function Deposit(props: Props) {
             width: '200px',
           }}
         >
+<<<<<<< HEAD
           <button onClick={() => setShowWithdrawModal(true)} className="buttonflex items-center rounded-lg border-2 border-dashed border-gray-500 bg-gray-100 px-6 text-sm uppercase tracking-wider text-gray-900 lg:h-12 3xl:h-13">
+=======
+          <button
+            onClick={() => setShowWithdrawModal(true)}
+            className="buttonflex items-center rounded-lg border-2 border-dashed border-gray-500 bg-gray-100 px-6 text-sm uppercase tracking-wider text-gray-900 lg:h-12 3xl:h-13"
+          >
+>>>>>>> 0f2e2757d3ff29c456990e4c15f21e1a11854df9
             Withdraw Now
           </button>
+          <WithdrawModal
+            show={showWithdrawModal}
+            onClose={() => setShowWithdrawModal(false)}
+            deposit={deposit}
+            onWithdrawSuccess={onWithdrawSuccess}
+          />
         </td>
       </tr>
       <WithdrawModal 

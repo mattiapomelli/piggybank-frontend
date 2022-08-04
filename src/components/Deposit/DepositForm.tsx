@@ -140,7 +140,6 @@ const DepositForm = ({ onDepositSuccess }: DepositFormProps) => {
           </p>
           <div className="flex justify-end">
             <Button
-              type="submit"
               className="mt-2"
               onClick={onApprove}
               loading={loadingApprove}
