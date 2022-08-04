@@ -13,7 +13,7 @@ import Layout from '@components/Layout/Layout'
 
 const { chains, provider } = configureChains(
   [CHAIN],
-  [alchemyProvider({ apiKey: ALCHEMY_KEY }), publicProvider()],
+  [alchemyProvider({ alchemyId: ALCHEMY_KEY }), publicProvider()],
 )
 
 const connectors = [
