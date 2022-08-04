@@ -2,9 +2,11 @@ import { PiggyBank } from '@abis/types'
 import Button from '@components/UI/Button'
 import InputField from '@components/UI/Input'
 import Modal, { BaseModalProps } from '@components/UI/Modal'
+import { usePiggyBankContractRead } from '@hooks/useContractRead'
 import { usePiggyBankContractWrite } from '@hooks/useContractWriteAndWait'
 import { toMillis } from '@utils/dates'
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 interface WithdrawInputs {
@@ -27,7 +29,31 @@ const WithdrawModal = ({
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm<WithdrawInputs>()
+  const [penalty, setPenalty] = useState<number | undefined>()
+
+  const { data: penaltyFee } = usePiggyBankContractRead<number>({
+    functionName: 'penaltyFee',
+  })
+
+  const { data: platformFee } = usePiggyBankContractRead<number>({
+    functionName: 'platformFee',
+  })
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      if (!penaltyFee || !platformFee || !value.amount) return
+
+      console.log(penaltyFee)
+
+      const fee = (penaltyFee + platformFee) / 100
+      const penalty = (Number(value.amount) * fee) / 100
+
+      setPenalty(penalty)
+    })
+    return () => subscription.unsubscribe()
+  }, [watch, penaltyFee, platformFee])
 
   const isEarly = Date.now() < toMillis(deposit.withdrawalDate)
 
@@ -39,6 +65,7 @@ const WithdrawModal = ({
     functionName: 'withdraw',
     onSuccess() {
       onWithdrawSuccess()
+      onClose()
       reset()
     },
   })
@@ -82,12 +109,24 @@ const WithdrawModal = ({
           })}
         />
 
-        {isEarly && (
-          <div className="bg-[#FDEDD4] rounded-xl p-6">
-            <p>
-              Warning! You're withdrawing your deposite before the date you
-              committed to. You'll be charged a fee if you want to proceed.
-            </p>
+        {isEarly ? (
+          <>
+            {penalty && (
+              <p className="text-red-600">
+                <span className="font-bold">Penalty: </span>
+                {penalty}
+              </p>
+            )}
+            <div className="bg-[#FDEDD4] rounded-xl p-6">
+              <p>
+                Warning! You're withdrawing your deposite before the date you
+                committed to. You'll be charged a fee if you want to proceed.
+              </p>
+            </div>
+          </>
+        ) : (
+          <div className="bg-green-200 rounded-xl p-6">
+            <p>You successfully saved money as you committed to!</p>
           </div>
         )}
         <Button type="submit" loading={isLoading}>
