@@ -45,8 +45,6 @@ const WithdrawModal = ({
     const subscription = watch((value) => {
       if (!penaltyFee || !platformFee || !value.amount) return
 
-      console.log(penaltyFee)
-
       const fee = (penaltyFee + platformFee) / 100
       const penalty = (Number(value.amount) * fee) / 100
 
@@ -126,7 +124,7 @@ const WithdrawModal = ({
           </>
         ) : (
           <div className="bg-green-200 rounded-xl p-6">
-            <p>You successfully saved money as you committed to!</p>
+            <p>You successfully saved money as you committed toloca!</p>
           </div>
         )}
         <Button type="submit" loading={isLoading}>

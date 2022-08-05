@@ -9,10 +9,14 @@ import { PiggyBank } from '@abis/types'
 import ClaimRewards from '@components/Rewards/ClaimRewards'
 import useTokenBalance from '@hooks/useTokenBalance'
 import { BigNumber } from 'ethers'
+import useMounted from '@hooks/useMounted'
 
 const Home: NextPage = () => {
   const { address, isReconnecting } = useAccount()
   const { balance } = useTokenBalance()
+  const mounted = useMounted()
+
+  const loading = isReconnecting || !mounted
 
   const { data: deposits, refetch: refetchDeposits } = usePiggyBankContractRead<
     PiggyBank.DepositStructOutput[]
@@ -39,13 +43,13 @@ const Home: NextPage = () => {
         </div>
       )}
       <DepositForm onDepositSuccess={refetchDeposits} />
-      {address && !isReconnecting && deposits && (
+      {!loading && (
         <>
           {rewards?.gt(0) && (
             <ClaimRewards rewards={rewards} onClaimSuccess={refetchRewards} />
           )}
           <DepositsList
-            deposits={deposits}
+            deposits={deposits || []}
             onWithdrawSuccess={refetchDeposits}
           />
         </>
