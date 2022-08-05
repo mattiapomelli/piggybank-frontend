@@ -33,26 +33,31 @@ const Home: NextPage = () => {
     })
 
   return (
-    <Container className="py-6 flex flex-col gap-10">
-      {address && !isReconnecting && rewards?.gte(0) && (
-        <div>
-          <p>
-            <span className="font-bold">Your balance: </span>
-            {balance?.formatted} {balance?.symbol}
-          </p>
-        </div>
-      )}
-      <DepositForm onDepositSuccess={refetchDeposits} />
-      {!loading && (
-        <>
-          {rewards?.gt(0) && (
-            <ClaimRewards rewards={rewards} onClaimSuccess={refetchRewards} />
+    <Container className="py-6">
+      <div>
+        <p>
+          <span className="font-bold">Your balance: </span>
+          {!loading && (
+            <>
+              {balance?.formatted} {balance?.symbol}
+            </>
           )}
-          <DepositsList
-            deposits={deposits || []}
-            onWithdrawSuccess={refetchDeposits}
-          />
-        </>
+        </p>
+      </div>
+      <div className="flex flex-col lg:flex-row gap-x-10 gap-y-16 mt-8">
+        <DepositForm onDepositSuccess={refetchDeposits} className="flex-1" />
+        <ClaimRewards
+          rewards={rewards || BigNumber.from(0)}
+          onClaimSuccess={refetchRewards}
+          className="flex-1"
+        />
+      </div>
+      {!loading && (
+        <DepositsList
+          deposits={deposits || []}
+          onWithdrawSuccess={refetchDeposits}
+          className="mt-16"
+        />
       )}
     </Container>
   )

@@ -21,9 +21,10 @@ interface DepositInputs {
 
 interface DepositFormProps {
   onDepositSuccess: () => void
+  className?: string
 }
 
-const DepositForm = ({ onDepositSuccess }: DepositFormProps) => {
+const DepositForm = ({ onDepositSuccess, className }: DepositFormProps) => {
   const {
     register,
     handleSubmit,
@@ -89,7 +90,7 @@ const DepositForm = ({ onDepositSuccess }: DepositFormProps) => {
   })
 
   return (
-    <>
+    <div className={className}>
       <form className="flex flex-col gap-4" onSubmit={onSubmit}>
         <h2 className="text-2xl font-bold">Deposit</h2>
         <InputField
@@ -156,7 +157,7 @@ const DepositForm = ({ onDepositSuccess }: DepositFormProps) => {
             'Something went wrong'}
         </div>
       )}
-    </>
+    </div>
   )
 }
 
